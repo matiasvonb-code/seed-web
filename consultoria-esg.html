@@ -38,8 +38,8 @@ img{max-width:100%;display:block}
 .btn-green:hover{background:var(--green-deep);color:var(--dark)}
 .btn-ghost{background:transparent;border-color:var(--green);color:var(--teal)}
 .btn-ghost:hover{background:var(--green);color:var(--dark)}
-.btn-ghost-light{background:transparent;border-color:rgba(255,255,255,.55);color:#fff}
-.btn-ghost-light:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff}
+.btn-ghost-light{background:transparent;border-color:var(--green);color:#fff}
+.btn-ghost-light:hover{background:var(--green);color:var(--dark)}
 .btn-text{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;color:var(--teal);border-bottom:2px solid var(--green);padding-bottom:2px;border-radius:0}
 .btn-text:hover{color:var(--green-deep);gap:.65rem}
 .site-header{position:sticky;top:0;z-index:50;background:var(--teal);color:#fff}
@@ -62,6 +62,8 @@ img{max-width:100%;display:block}
 .dropdown-menu a:hover{background:var(--bg-alt);color:var(--teal)}
 .dropdown-menu a small{display:block;font-weight:400;color:var(--ink-soft);font-size:.78rem;margin-top:2px}
 .nav-cta{margin-left:.4rem}
+.nav-cta a.btn{padding:.72rem 2.4rem;border:2px solid var(--green);color:#fff;border-radius:var(--radius-pill)}
+.nav-cta a.btn:hover{background:var(--green);color:var(--dark);border-color:var(--green)}
 .nav-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:.4rem}
 .hero{background:var(--bg);padding:4.5rem 0 4rem}
 .hero-split{display:grid;grid-template-columns:1.05fr 1fr;gap:3.5rem;align-items:center}
@@ -212,7 +214,7 @@ section{padding:3.2rem 0}
         </li>
         <li><a href="nosotros.html" data-nav="nosotros">Nosotros</a></li>
         <li><a href="contacto.html" data-nav="contacto">Contacto</a></li>
-        <li class="nav-cta"><a href="contacto.html" class="btn btn-green">Solicitar evaluación</a></li>
+        <li class="nav-cta"><a href="contacto.html" class="btn btn-ghost-light">Solicitar evaluación</a></li>
       </ul>
     </div>
   </header>
@@ -225,7 +227,7 @@ section{padding:3.2rem 0}
         <h1>Consultoría ESG y Descarbonización</h1>
         <p class="lead">Evaluaciones ESG, estrategias de descarbonización y alineamiento con marcos regulatorios europeos. Para empresas con inversionistas y fondos inmobiliarios.</p>
         <div class="hero-actions">
-          <a href="contacto.html" class="btn btn-green">Conversemos sobre tu estrategia ESG →</a>
+          <a href="contacto.html" class="btn btn-ghost">Conversemos sobre tu estrategia ESG →</a>
         </div>
       </div>
       <div class="media reveal"><span>Imagen · portafolio / ciudad</span></div>
@@ -285,7 +287,7 @@ section{padding:3.2rem 0}
       <div class="cta-banner reveal">
         <h2>Prepara tu portafolio para los inversionistas</h2>
         <p>Definimos tu línea base ESG y una hoja de ruta de descarbonización alineada con marcos europeos.</p>
-        <a href="contacto.html" class="btn btn-green">Conversemos sobre tu estrategia ESG →</a>
+        <a href="contacto.html" class="btn btn-ghost-light">Conversemos sobre tu estrategia ESG →</a>
       </div>
     </div>
   </section>
