@@ -83,24 +83,26 @@
         </div>
 
         <div class="reveal">
-          <form class="form-grid" data-demo>
+          <form class="form-grid" data-contact action="https://formspree.io/f/xkodwdzw" method="POST">
+            <input type="hidden" name="_subject" value="Nuevo contacto — seedconsulting.cl" />
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="two-col">
-              <div class="field"><label for="c-nombre">Nombre</label><input id="c-nombre" type="text" required /></div>
-              <div class="field"><label for="c-apellido">Apellido</label><input id="c-apellido" type="text" /></div>
+              <div class="field"><label for="c-nombre">Nombre</label><input id="c-nombre" name="nombre" type="text" required /></div>
+              <div class="field"><label for="c-apellido">Apellido</label><input id="c-apellido" name="apellido" type="text" /></div>
             </div>
-            <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" required /></div>
+            <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" required /></div>
             <div class="field">
               <label for="c-servicio">Servicio de interés</label>
-              <select id="c-servicio">
+              <select id="c-servicio" name="servicio">
                 <option>Calificación Energética (CEV)</option>
                 <option>Certificación CES</option>
                 <option>Reglamentación Térmica</option>
                 <option>Consultoría ESG</option>
               </select>
             </div>
-            <div class="field"><label for="c-msg">Mensaje</label><textarea id="c-msg"></textarea></div>
+            <div class="field"><label for="c-msg">Mensaje</label><textarea id="c-msg" name="mensaje" required></textarea></div>
             <div><button type="submit" class="btn btn-green">Enviar mensaje →</button></div>
-            <p class="form-note"></p>
+            <p class="form-note" role="status"></p>
           </form>
         </div>
       </div>
@@ -164,12 +166,23 @@ document.querySelectorAll('.faq-q').forEach(function(q){
 });
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-document.querySelectorAll('form[data-demo]').forEach(function(f){
+document.querySelectorAll('form[data-contact]').forEach(function(f){
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var n=f.querySelector('.form-note');
-    if(n){n.textContent='Gracias, hemos recibido tu mensaje. Te responderemos dentro de 24 horas.';n.style.display='block'}
-    f.reset();
+    var b=f.querySelector('button[type="submit"]');
+    var orig=b.textContent;
+    b.disabled=true;b.textContent='Enviando…';
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(!r.ok)throw new Error('HTTP '+r.status);
+        if(n){n.textContent='Gracias, hemos recibido tu mensaje. Te responderemos dentro de 24 horas.';n.classList.remove('error');n.style.display='block'}
+        f.reset();
+      })
+      .catch(function(){
+        if(n){n.textContent='No pudimos enviar el mensaje. Inténtalo de nuevo o escríbenos directo a contacto@seedconsulting.cl.';n.classList.add('error');n.style.display='block'}
+      })
+      .finally(function(){b.disabled=false;b.textContent=orig});
   });
 });
 

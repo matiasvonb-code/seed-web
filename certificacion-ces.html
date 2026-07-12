@@ -204,14 +204,6 @@ document.querySelectorAll('.faq-q').forEach(function(q){
 });
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-document.querySelectorAll('form[data-demo]').forEach(function(f){
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var n=f.querySelector('.form-note');
-    if(n){n.textContent='Gracias, hemos recibido tu mensaje. Te responderemos dentro de 24 horas.';n.style.display='block'}
-    f.reset();
-  });
-});
 
 </script>
 
